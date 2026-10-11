@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HKCTA Draw Analyzer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>HKCTA Tournament Draw Analyzer</h1>
+            <p>Enter a tournament draw URL to see all players and their statistics</p>
+        </header>
+
+        <div class="input-section">
+            <input
+                type="text"
+                id="drawUrl"
+                placeholder="https://hkta.tournamentsoftware.com/tournament/.../draw/2"
+                value="https://hkta.tournamentsoftware.com/tournament/C3333DC3-695D-411B-A777-85362D6AE1F8/draw/2"
+            >
+            <div class="button-group">
+                <button id="analyzeBtn">Analyze Draw</button>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="fetchProfiles">
+                    <span>Fetch real profile URLs (slower)</span>
+                </label>
+            </div>
+        </div>
+
+        <div id="loading" class="loading hidden">
+            <div class="spinner"></div>
+            <p>Fetching player data...</p>
+        </div>
+
+        <div id="error" class="error hidden"></div>
+
+        <div id="results" class="results hidden">
+            <h2>Players in Draw (<span id="playerCount">0</span>)</h2>
+
+            <div class="my-opponents-section">
+                <h3>Find Your Potential Opponents</h3>
+                <div class="my-name-input">
+                    <input type="text" id="myNameInput" list="playerSuggestions" placeholder="Enter your name (e.g., Tyler MAN)" autocomplete="off">
+                    <datalist id="playerSuggestions"></datalist>
+                    <button id="findOpponentsBtn">Find My Opponents</button>
+                    <button id="clearOpponentsBtn" class="hidden">Show All Players</button>
+                </div>
+                <div id="myOpponentsInfo" class="hidden"></div>
+            </div>
+
+            <div class="filters">
+                <input type="text" id="searchFilter" placeholder="Search players...">
+                <select id="sortFilter">
+                    <option value="name">Sort by Name</option>
+                    <option value="ranking">Sort by Ranking</option>
+                    <option value="wins">Sort by Wins</option>
+                </select>
+            </div>
+            <div id="playerList" class="player-list"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
